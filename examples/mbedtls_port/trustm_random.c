@@ -65,7 +65,7 @@ int mbedtls_hardware_poll( void *data,
 
     if (olen != NULL)
     {
-          me = optiga_crypt_create(0, optiga_crypt_event_completed, NULL);
+        me = optiga_crypt_create(0, optiga_crypt_event_completed, NULL);
         if (NULL == me)
         {
             // MBEDTLS_ERR_PK_FEATURE_UNAVAILABLE
@@ -99,6 +99,11 @@ int mbedtls_hardware_poll( void *data,
                 }
             }
         }
+    }
+
+    if (me != NULL)
+    {
+        optiga_crypt_destroy(me);
     }
 
     return error;
